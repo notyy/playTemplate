@@ -1,18 +1,28 @@
 package controllers
 
+import models.User
+import play.api.libs.json._
 import play.api.mvc.{Action, Controller}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
+import utils.JsonFormatter._
 
-class Application extends Controller{
+class Application extends Controller {
   def index = TODO
-//    Action {
-//    Ok("Hello world")
-//  }
+
+  //    Action {
+  //    Ok("Hello world")
+  //  }
 
   def echo = Action { request =>
     Ok("Got request [" + request + "]")
+  }
+
+  def getJson = Action { request =>
+    val user = User("damotou1")
+    val json = Json.toJson(user)
+    Ok(json)
   }
 
   def show(age: Int) = Action {
@@ -32,10 +42,8 @@ class Application extends Controller{
   }
 
   def futureHello = Action.async {
-    Future { "hello" }.map(Ok(_))
-  }
-
-  def letsView = Action {
-    Ok(views.html.Application.index())
+    Future {
+      "hello"
+    }.map(Ok(_))
   }
 }
