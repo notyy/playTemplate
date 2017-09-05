@@ -19,8 +19,12 @@ class Application extends Controller {
     Ok("Got request [" + request + "]")
   }
 
-  def getJson = Action { request =>
+  def getJson = Action(parse.json) { request =>
+    import utils.JsonFormatter._
+
     val user = User("damotou1")
+    request.body.as[User]
+    Json.fromJson(request.body)
     val json = Json.toJson(user)
     Ok(json)
   }

@@ -1,9 +1,9 @@
 package utils
 
 import models.User
-import play.api.libs.json.{Json, Writes}
+import play.api.libs.json.{Format, Json}
 
 object JsonFormatter {
-  implicit val userWrites: Writes[User] = Json.writes[User]
+  implicit val userFormats: Format[User] = Json.format[User]
 
 }
