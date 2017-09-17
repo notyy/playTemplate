@@ -3,11 +3,11 @@
 # ~~~~
 
 # Home page
-GET        /                   @controllers.Application.index
-GET        /app                @controllers.Application.index
-GET        /echo               @controllers.Application.echo
-GET        /getJson            @controllers.Application.getJson
-GET        /show               @controllers.Application.show(age: Int)
-GET        /xml                @controllers.Application.xmlResult
-GET        /html               @controllers.Application.html
-GET        /futureHello        @controllers.Application.futureHello
+GET        /                   @controllers.ApplicationController.index
+GET        /app                @controllers.ApplicationController.index
+GET        /echo               @controllers.ApplicationController.echo
+GET        /getJson            @controllers.ApplicationController.getJson
+GET        /show               @controllers.ApplicationController.show(age: Int)
+GET        /xml                @controllers.ApplicationController.xmlResult
+GET        /html               @controllers.ApplicationController.html
+GET        /futureHello        @controllers.ApplicationController.futureHello

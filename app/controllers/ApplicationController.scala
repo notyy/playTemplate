@@ -1,14 +1,19 @@
 package controllers
 
+import java.util.Date
+import javax.inject.{Inject, Singleton}
+
 import models.User
 import play.api.libs.json._
-import play.api.mvc.{Action, Controller}
+import play.api.mvc.{AbstractController, Action, Controller, ControllerComponents}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import utils.JsonFormatter._
 
-class Application extends Controller {
+
+@Singleton
+class ApplicationController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
   def index = TODO
 
   //    Action {
@@ -22,9 +27,9 @@ class Application extends Controller {
   def getJson = Action(parse.json) { request =>
     import utils.JsonFormatter._
 
-    val user = User("damotou1")
+    val user = User("damotou1",new Date(),'Y')
     request.body.as[User]
-    Json.fromJson(request.body)
+    Json.fromJson[User](request.body)
     val json = Json.toJson(user)
     Ok(json)
   }
@@ -46,6 +51,12 @@ class Application extends Controller {
   }
 
   def futureHello = Action.async {
+    Future {
+      "hello"
+    }.map(Ok(_))
+  }
+
+  def customers = Action.async {
     Future {
       "hello"
     }.map(Ok(_))
