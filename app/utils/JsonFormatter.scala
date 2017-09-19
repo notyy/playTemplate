@@ -18,6 +18,6 @@ object JsonFormatter {
     }
   }
 
-  implicit val userFormats: Format[User] = Json.format[User]
+  implicit def userFormats[T: Format]: Format[User[T]] = Json.format[User[T]]
 
 }

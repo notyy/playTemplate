@@ -27,9 +27,9 @@ class ApplicationController @Inject()(cc: ControllerComponents) extends Abstract
   def getJson = Action(parse.json) { request =>
     import utils.JsonFormatter._
 
-    val user = User("damotou1",new Date(),'Y')
-    request.body.as[User]
-    Json.fromJson[User](request.body)
+    val user = User("damotou1",new Date(),'Y',"special")
+    request.body.as[User[String]]
+    Json.fromJson[User[String]](request.body)
     val json = Json.toJson(user)
     Ok(json)
   }

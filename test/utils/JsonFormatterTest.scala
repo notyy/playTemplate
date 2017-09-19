@@ -11,7 +11,7 @@ class JsonFormatterTest extends FunSpec with Matchers {
 
   describe("JsonFormatter"){
     it("can format User instance to Json format"){
-      val user = User("notyy", new Date(),'Y')
+      val user = User("notyy", new Date(),'Y',"special")
       val userJson = Json.toJson(user)
       println(s"$user to json is : $userJson")
     }
